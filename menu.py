@@ -21,11 +21,15 @@ def listave(list):
     total = 0
     for x in list:
         total += x
-    return total / (len(list))
+    print("Average: ", total / len(list))
+    return total / len(list)
 
 
 def revstr(str):
-    return reversed(str)
+    reverse = ""
+    for i in str:
+        reverse = i + reverse
+    return reverse
 
 
 if __name__ == '__main__':
@@ -57,7 +61,7 @@ if __name__ == '__main__':
                 except ValueError:
                     break
             print()
-            print(listave(avglist))
+            listave(avglist)
             print()
             continue
         elif menu_selection == 4:
