@@ -13,21 +13,26 @@ def create_roster():
 
 # Prints the team ordered by jersey numbers low to high
 def print_roster(team):
-	sorted_team = team((jersey,player) for player,jersey in team.
-	for player, jersey in sorted(team.items()):
+	sorted_team = sorted(team.items(), key=lambda kv: kv[1])
+	for player, jersey in sorted_team:
 		print("Player Name: %s, Jersey Number: %d" % (player, jersey))
 
 
 # Prompts the user for player name and number to add to a team
 def add_player(team):
-    pass
+	player_name = input("Name of player you would like to add: ")
+	player_number = int(input("Enter jersey number for %s: " % player_name))
+	team[player_name] = player_number
+	return team
 
 
 # Removes player from a team
 def remove_player(team):
-    pass
+	player_name = input("Name of player you would like to remove: ")
+	del team[player_name]
+	return team
 
 
 # Prints the number of players on a team
 def number_on_team(team):
-    return len(team)
+	return len(team)
