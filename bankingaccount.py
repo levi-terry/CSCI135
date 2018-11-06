@@ -10,12 +10,10 @@ class Account:
 
     def deposit(self, deposit_amount):
         self.balance += deposit_amount
-        # return self.balance
 
     def withdraw(self, withdraw_amount, fee):
         self.balance -= withdraw_amount
         self.balance -= fee
-        # return self.balance
 
 
 if __name__ == "__main__":
