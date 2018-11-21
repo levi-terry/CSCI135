@@ -1,3 +1,5 @@
+# Created this file to make the main code cleaner since this mostly consists of the display of the hangman
+
 display = ['''
      ______
      |    |

@@ -13,11 +13,13 @@ while player_continue != "n":
     # Pick random word from list, save that string as a list
     word = list(random.choice(word_list))
     # display word, for testing // remove later
-    print(word)
+    # print(word)
     # Initialize player guesses, display word, missed letters
     player_guesses = 0
     display_word = list("-" * len(word))
     missed_letters = []
+    # Let player know how many letters are in the word
+    print("The word has %d letters in it." % len(word))
 
     while player_guesses != 6:
         if display_word == word:
