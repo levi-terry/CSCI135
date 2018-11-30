@@ -55,16 +55,16 @@ while count <= 20:
     y = 0
     if count < 7:
         x = random.randint(-500, 500)
-        y = -340
+        y = random.randint(-340, -320)
     elif count < 13:
         x = random.randint(-300, 300)
-        y = -100
+        y = random.randint(-130, -100)
     elif count < 18:
         x = random.randint(-200, 200)
-        y = 150
+        y = random.randint(80, 140)
     else:
         x = random.randint(-100, 100)
-        y = 300
+        y = random.randint(260, 330)
     tree.up()
     # Pick random x,y within tree? or iterate?
     # Tree corners = (-500, -350) (500, -350) (0, 516)
