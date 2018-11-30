@@ -51,17 +51,20 @@ tree.end_fill()
 colors = ["red", "blue", "yellow", "purple", "orange"]
 count = 0
 while count <= 20:
-    x = -500
-    y = -300
-    if count > 7:
-        x += 60
-        y += 60
-    elif count > 13:
-        x += 120
-        y += 120
-    elif count > 17:
-        x += 180
-        y += 180
+    x = 0
+    y = 0
+    if count < 7:
+        x = random.randint(-500, 500)
+        y = -340
+    elif count < 13:
+        x = random.randint(-300, 300)
+        y = -100
+    elif count < 18:
+        x = random.randint(-200, 200)
+        y = 150
+    else:
+        x = random.randint(-100, 100)
+        y = 300
     tree.up()
     # Pick random x,y within tree? or iterate?
     # Tree corners = (-500, -350) (500, -350) (0, 516)
