@@ -1,5 +1,5 @@
 import turtle
-
+import random
 wn = turtle.Screen()
 tree = turtle.Turtle()
 wn.delay(None)
@@ -11,7 +11,7 @@ wn.screensize(1200, 1300)
 tree.up()
 tree.goto(-500, -350)
 tree.down()
-tree.color("green", "green")
+tree.color("black", "green")
 tree.begin_fill()
 for i in range(3):
     tree.forward(1000)
@@ -23,7 +23,7 @@ tree.end_fill()
 tree.up()
 tree.goto(-100, -350)
 tree.down()
-tree.color("brown", "brown")
+tree.color("black", "brown")
 tree.begin_fill()
 tree.rt(90)
 tree.forward(200)
@@ -46,5 +46,37 @@ for i in range(5):
     tree.forward(50)
     tree.lt(324)
 tree.end_fill()
+
+# Make some random bulbs
+colors = ["red", "blue", "yellow", "purple", "orange"]
+count = 0
+while count <= 20:
+    x = -500
+    y = -300
+    if count > 7:
+        x += 60
+        y += 60
+    elif count > 13:
+        x += 120
+        y += 120
+    elif count > 17:
+        x += 180
+        y += 180
+    tree.up()
+    # Pick random x,y within tree? or iterate?
+    # Tree corners = (-500, -350) (500, -350) (0, 516)
+    tree.color("black", random.choice(colors))
+    tree.goto(x, y)
+    tree.down()
+    tree.begin_fill()
+    tree.circle(40)
+    tree.end_fill()
+    count += 1
+
+# Write Merry Christmas at top
+tree.up()
+tree.goto(0, 570)
+tree.color("black", "black")
+tree.write("Merry Christmas!", True, align="center", font=("Calibri", 30, "bold"))
 
 wn.exitonclick()
