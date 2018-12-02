@@ -4,7 +4,7 @@ wn = turtle.Screen()
 tree = turtle.Turtle()
 wn.delay(None)
 wn.tracer(4, None)  # Use this to draw much faster, save time
-wn.bgcolor("blue")
+# wn.bgcolor("blue")
 wn.screensize(1200, 1300)
 
 # Green Tree Part
@@ -16,7 +16,6 @@ tree.begin_fill()
 for i in range(3):
     tree.forward(1000)
     tree.lt(120)
-    print(tree.pos())
 tree.end_fill()
 
 # Draw Brown Trunk
@@ -66,13 +65,12 @@ while count <= 20:
         x = random.randint(-100, 100)
         y = random.randint(260, 330)
     tree.up()
-    # Pick random x,y within tree? or iterate?
     # Tree corners = (-500, -350) (500, -350) (0, 516)
     tree.color("black", random.choice(colors))
     tree.goto(x, y)
     tree.down()
     tree.begin_fill()
-    tree.circle(40)
+    tree.circle(30)
     tree.end_fill()
     count += 1
 
