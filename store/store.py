@@ -6,10 +6,10 @@ class Transaction:
         self.date = date
         self.type = type
         self.description = description
-        self.amount = amount
+        self.amount = float(amount)
 
     def __str__(self):
-        return "Date: " + self.date + ", Description: " + self.description + ", Amount: $" + self.amount
+        return "Date: " + self.date + ", Description: " + self.description + ", Amount: $%.2f" % self.amount
 
 
 def print_number_of_transactions(list_of_trans):
@@ -29,8 +29,8 @@ def print_expenses(list_of_trans):
     print("Expenses: ")
     for expense in expenses:
         print(expense)
-        expenses_total += int(expense.amount)
-    print("Total Expenses: $%d.00" % expenses_total)
+        expenses_total += expense.amount
+    print("Total Expenses: $%.2f" % expenses_total)
 
 
 def ret_expenses(list_of_trans):
@@ -48,7 +48,7 @@ def total_expenses(list_of_trans):
         if transaction.type == "expense":
             expenses.append(transaction)
     for expense in expenses:
-        expenses_total += int(expense.amount)
+        expenses_total += expense.amount
     return expenses_total
 
 
@@ -61,8 +61,8 @@ def print_deposits(list_of_trans):
     print("Deposits:")
     for deposit in deposits:
         print(deposit)
-        deposits_total += int(deposit.amount)
-    print("Total Deposits: $%d.00" % deposits_total)
+        deposits_total += deposit.amount
+    print("Total Deposits: $%.2f" % deposits_total)
 
 
 def ret_deposits(list_of_trans):
@@ -80,7 +80,7 @@ def total_deposits(list_of_trans):
         if transaction.type == "deposit":
             deposits.append(transaction)
     for deposit in deposits:
-        deposits_total += int(deposit.amount)
+        deposits_total += deposit.amount
     return deposits_total
 
 
@@ -91,7 +91,7 @@ def print_balance(list_of_trans):
             account_balance -= int(transaction.amount)
         if transaction.type == "deposit":
             account_balance += int(transaction.amount)
-    print("Balance: $%d.00" % account_balance)
+    print("Balance: $%.2f" % account_balance)
     if account_balance < 0:
         print("In danger of going out of business!")
 
@@ -115,19 +115,16 @@ def generate_report(list_of_trans):
         for expense in expenses:
             report.write(str(expense))
             report.write("\n")
-        report.write("Total expenses: $")
-        report.write(str(total_expenses(list_of_trans)))
+        report.write("Total expenses: $%.2f" % total_expenses(list_of_trans))
         report.write("\n\n")
         report.write("Deposits:\n")
         deposits = ret_deposits(list_of_trans)
         for deposit in deposits:
             report.write(str(deposit))
             report.write("\n")
-        report.write("Total deposits: $")
-        report.write(str(total_deposits(list_of_trans)))
+        report.write("Total deposits: $%.2f" % total_deposits(list_of_trans))
         report.write("\n\n")
-        report.write("Balance: $")
-        report.write(str(ret_balance(list_of_trans)))
+        report.write("Balance: $%.2f" % ret_balance(list_of_trans))
         if ret_balance(list_of_trans) < 0:
             report.write("\nIn danger of going out of business!")
 
@@ -141,18 +138,8 @@ if __name__ == "__main__":
         list_of_transactions.append(transact)
     trans_file.close()
 
-    generate_report(list_of_transactions)
-    print("STORE")
-    print("1. Print total number of transactions")
-    print("2. Print expenses")
-    print("3. Print deposits")
-    print("4. Print account balance")
-    print("5. Generate report")
-    print("6. Quit")
-    user_choice = input("Enter choice(1/2/3/4/5/6):")
-    correct_choices = ["1", "2", "3", "4", "5", "6"]
-    while user_choice not in correct_choices:
-        print("Invalid input")
+    user_choice = "0"
+    while user_choice != "6":
         print("STORE")
         print("1. Print total number of transactions")
         print("2. Print expenses")
@@ -160,16 +147,32 @@ if __name__ == "__main__":
         print("4. Print account balance")
         print("5. Generate report")
         print("6. Quit")
-        user_choice = input("Enter choice(1/2/3/4/5/6):")
-    if user_choice == "1":
-        print_number_of_transactions(list_of_transactions)
-    if user_choice == "2":
-        print_expenses(list_of_transactions)
-    if user_choice == "3":
-        print_deposits(list_of_transactions)
-    if user_choice == "4":
-        print_balance(list_of_transactions)
-    if user_choice == "5":
-        generate_report(list_of_transactions)
-    if user_choice == "6":
-        exit()
+        user_choice = input("Enter choice(1/2/3/4/5/6):\n\n")
+        correct_choices = ["1", "2", "3", "4", "5", "6"]
+        while user_choice not in correct_choices:
+            print("Invalid input")
+            print("STORE")
+            print("1. Print total number of transactions")
+            print("2. Print expenses")
+            print("3. Print deposits")
+            print("4. Print account balance")
+            print("5. Generate report")
+            print("6. Quit")
+            user_choice = input("Enter choice(1/2/3/4/5/6):\n")
+        if user_choice == "1":
+            print_number_of_transactions(list_of_transactions)
+            print()
+        if user_choice == "2":
+            print_expenses(list_of_transactions)
+            print()
+        if user_choice == "3":
+            print_deposits(list_of_transactions)
+            print()
+        if user_choice == "4":
+            print_balance(list_of_transactions)
+            print()
+        if user_choice == "5":
+            generate_report(list_of_transactions)
+            print()
+        if user_choice == "6":
+            exit()
